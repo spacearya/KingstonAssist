@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* Nature Distilled design system */
+@theme {
+  /* Palette */
+  --color-cloud-dancer: #F0F0F0;
+  --color-sage: #7D9B76;
+  --color-sage-light: #9BB396;
+  --color-burnt-sienna: #C47B5B;
+  --color-burnt-sienna-light: #D4A090;
+  --color-slate: #2D3748;
+  --color-slate-deep: #1A202C;
+  --color-glass-bg: rgba(240, 240, 240, 0.75);
+  --color-glass-border: rgba(255, 255, 255, 0.4);
+
+  /* Typography */
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  /* Radii */
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-3xl: 40px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--color-slate-deep);
+  background-color: var(--color-cloud-dancer);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle grain overlay for texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+/* Focus ring for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 2px;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(125, 155, 118, 0.25); }
+  50% { box-shadow: 0 0 0 12px rgba(125, 155, 118, 0); }
+}
+
+.pulse-ring-on-focus:focus-within {
+  animation: pulse-ring 2s ease-in-out infinite;
+}

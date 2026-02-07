@@ -1,0 +1,83 @@
+{
+  "categories": ["restaurants", "places", "activities", "artifacts"],
+  "restaurants": [
+    {
+      "id": "r1",
+      "name": "Downtown Kitchen",
+      "category": "restaurants",
+      "description": "Farm-to-table dining with seasonal local produce from Kingston area.",
+      "sustainability": "Zero-waste kitchen, local suppliers only",
+      "address": "Kingston Downtown",
+      "live": false
+    },
+    {
+      "id": "r2",
+      "name": "Sage & Stone Café",
+      "category": "restaurants",
+      "description": "Organic coffee and pastries with a focus on regional ingredients.",
+      "sustainability": "Compostable packaging, bike delivery",
+      "address": "Visit Kingston",
+      "live": false
+    }
+  ],
+  "places": [
+    {
+      "id": "p1",
+      "name": "Kingston City Hall",
+      "category": "places",
+      "description": "Historic landmark and cultural hub in the heart of downtown.",
+      "sustainability": "Heritage conservation",
+      "address": "Kingston Downtown",
+      "live": false
+    },
+    {
+      "id": "p2",
+      "name": "Waterfront Trail",
+      "category": "places",
+      "description": "Scenic walking and cycling path along the waterfront.",
+      "sustainability": "Green corridor, native planting",
+      "address": "Visit Kingston",
+      "live": false
+    }
+  ],
+  "activities": [
+    {
+      "id": "a1",
+      "name": "Farmers Market",
+      "category": "activities",
+      "description": "Weekly market with local produce, crafts, and live music.",
+      "sustainability": "Local producers only",
+      "address": "Market Square",
+      "live": true
+    },
+    {
+      "id": "a2",
+      "name": "Sunset Kayak Tour",
+      "category": "activities",
+      "description": "Guided kayak tour at dusk. Weather-dependent.",
+      "sustainability": "Eco-friendly equipment, leave-no-trace",
+      "address": "Kingston Marina",
+      "live": true
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "ar1",
+      "name": "Kingston Pen Tours",
+      "category": "artifacts",
+      "description": "Historic penitentiary turned museum and heritage site.",
+      "sustainability": "Cultural preservation",
+      "address": "Kingston Penitentiary",
+      "live": false
+    },
+    {
+      "id": "ar2",
+      "name": "Agnes Etherington Art Centre",
+      "category": "artifacts",
+      "description": "Art gallery featuring Canadian and Indigenous works.",
+      "sustainability": "Community programming",
+      "address": "Queen's University",
+      "live": false
+    }
+  ]
+}
