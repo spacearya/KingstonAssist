@@ -5,6 +5,8 @@ import { useApp } from '../context/AppContext'
 import { useAuth } from '../context/AuthContext'
 import Sidebar from './Sidebar'
 
+const logoImg = new URL('../../frontendimages/ANANG_logo.png', import.meta.url).href
+
 const pageVariants = {
   initial: { opacity: 0, y: 8 },
   animate: { opacity: 1, y: 0 },
@@ -36,9 +38,14 @@ export default function Layout({ children }) {
         </button>
         <Link
           to="/"
-          className="font-[var(--font-serif)] font-bold text-slate-deep text-lg hover:text-slate-deep/80"
+          className="flex items-center gap-2.5 font-[var(--font-serif)] font-bold text-slate-deep text-lg hover:text-slate-deep/80"
         >
-          KingstonAI
+          <img
+            src={logoImg}
+            alt=""
+            className="w-9 h-9 rounded-full object-cover shrink-0 ring-2 ring-white/50 shadow-sm"
+          />
+          <span>AnangAI</span>
         </Link>
         <div className="flex items-center gap-2">
           {user ? (

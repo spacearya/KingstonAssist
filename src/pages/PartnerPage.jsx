@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import Layout, { pageVariants, pageTransition } from '../components/Layout'
-import { Check, Building2, User, Mail, Lock, FileText, Phone, Loader2 } from 'lucide-react'
-import { registerPartner } from '../lib/api'
+import { Check, Building2, Mail, FileText, Phone, Loader2, FileCheck } from 'lucide-react'
+import { submitApplication } from '../lib/api'
 
 const BUSINESS_TYPES = ['Cafe', 'Restaurant', 'Producer', 'Market', 'Other']
 
@@ -14,13 +14,11 @@ const inputBase =
 export default function PartnerPage() {
   const navigate = useNavigate()
   const [step, setStep] = useState(1)
-  const [showSuccessModal, setShowSuccessModal] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [licenseFile, setLicenseFile] = useState(null)
   const [form, setForm] = useState({
-    username: '',
     email: '',
-    password: '',
     businessName: '',
     businessType: '',
     businessDescription: '',
@@ -34,29 +32,15 @@ export default function PartnerPage() {
     setSubmitError('')
     setSubmitting(true)
     try {
-      await registerPartner(form)
-      setShowSuccessModal(true)
+      await submitApplication(form, licenseFile)
+      toast.success('Application received!')
+      navigate('/success', { state: { email: form.email.trim(), bizName: form.businessName || form.email } })
     } catch (err) {
       setSubmitError(err.message ?? 'Could not save application.')
       toast.error(err.message ?? 'Could not save application.')
     } finally {
       setSubmitting(false)
     }
-  }
-
-  const handleCloseModal = () => {
-    setShowSuccessModal(false)
-    setStep(1)
-    setForm({
-      username: '',
-      email: '',
-      password: '',
-      businessName: '',
-      businessType: '',
-      businessDescription: '',
-      contact: '',
-    })
-    navigate('/login', { state: { message: 'Application filed! Please log in to track your status.' } })
   }
 
   const nextStep = () => setStep((s) => Math.min(s + 1, 3))
@@ -73,10 +57,10 @@ export default function PartnerPage() {
         transition={pageTransition}
       >
         <h1 className="font-[var(--font-serif)] text-3xl md:text-4xl font-bold text-slate-deep mb-2">
-          Partner Application
+          Get Featured
         </h1>
         <p className="text-slate-deep/70 mb-8">
-          Get featured on KingstonAI. Apply for local business listing and permits.
+          Submit your business details. You can create a password on the next page to track your roadmap.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -91,19 +75,6 @@ export default function PartnerPage() {
               >
                 <label className="block">
                   <span className="flex items-center gap-2 text-sm font-medium text-slate-deep mb-1">
-                    <User className="w-4 h-4" /> Username
-                  </span>
-                  <input
-                    type="text"
-                    value={form.username}
-                    onChange={(e) => update('username', e.target.value)}
-                    required
-                    className={inputBase}
-                    placeholder="Your display name"
-                  />
-                </label>
-                <label className="block">
-                  <span className="flex items-center gap-2 text-sm font-medium text-slate-deep mb-1">
                     <Mail className="w-4 h-4" /> Email
                   </span>
                   <input
@@ -113,21 +84,6 @@ export default function PartnerPage() {
                     required
                     className={inputBase}
                     placeholder="you@example.com"
-                  />
-                </label>
-                <label className="block">
-                  <span className="flex items-center gap-2 text-sm font-medium text-slate-deep mb-1">
-                    <Lock className="w-4 h-4" /> Create Password
-                  </span>
-                  <input
-                    type="password"
-                    value={form.password}
-                    onChange={(e) => update('password', e.target.value)}
-                    required
-                    minLength={6}
-                    autoComplete="new-password"
-                    className={inputBase}
-                    placeholder="Choose a password for later login"
                   />
                 </label>
                 <label className="block">
@@ -204,6 +160,18 @@ export default function PartnerPage() {
                     placeholder="Phone number or alternate contact"
                   />
                 </label>
+                <label className="block">
+                  <span className="flex items-center gap-2 text-sm font-medium text-slate-deep mb-1">
+                    <FileCheck className="w-4 h-4" /> Upload City License (optional)
+                  </span>
+                  <input
+                    type="file"
+                    accept=".pdf,.png,.jpg,.jpeg,.webp"
+                    onChange={(e) => setLicenseFile(e.target.files?.[0] ?? null)}
+                    className="block w-full text-sm text-slate-deep file:mr-3 file:py-2 file:px-4 file:rounded-[var(--radius-xl)] file:border-0 file:bg-sage/20 file:text-sage file:font-medium"
+                  />
+                  <p className="text-xs text-slate-deep/60 mt-1">PDF or image. You can also upload later from your dashboard.</p>
+                </label>
               </motion.div>
             )}
           </AnimatePresence>
@@ -239,7 +207,7 @@ export default function PartnerPage() {
                 {submitting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Saving…
+                    Submitting…
                   </>
                 ) : (
                   'Submit'
@@ -254,81 +222,10 @@ export default function PartnerPage() {
             Partner Status
           </h2>
           <p className="text-sm text-slate-deep/70 mb-4">
-            Prototype: mock status table. HOOK_BACKEND_HERE for real permit portal.
+            After submitting, create your password on the success page to access your licensing roadmap.
           </p>
-          <div className="rounded-[var(--radius-xl)] border border-[var(--color-glass-border)] overflow-hidden bg-white/60">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-white/80 text-left">
-                  <th className="px-4 py-3 font-medium text-slate-deep">Business</th>
-                  <th className="px-4 py-3 font-medium text-slate-deep">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-t border-[var(--color-glass-border)]">
-                  <td className="px-4 py-3 text-slate-deep">Demo Café</td>
-                  <td className="px-4 py-3">
-                    <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-medium">
-                      Pending
-                    </span>
-                  </td>
-                </tr>
-                <tr className="border-t border-[var(--color-glass-border)]">
-                  <td className="px-4 py-3 text-slate-deep">Local Farm Co.</td>
-                  <td className="px-4 py-3">
-                    <span className="px-2 py-0.5 rounded-full bg-green-100 text-green-800 text-xs font-medium">
-                      Approved
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </section>
       </motion.div>
-
-      <AnimatePresence>
-        {showSuccessModal && (
-          <>
-            <motion.div
-              className="fixed inset-0 bg-slate-deep/40 backdrop-blur-sm z-50"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={handleCloseModal}
-            />
-            <motion.div
-              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[min(400px,90vw)] rounded-[var(--radius-2xl)] bg-white shadow-xl border border-[var(--color-glass-border)] p-6 md:p-8"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ type: 'tween', duration: 0.2 }}
-            >
-              <div className="flex justify-center mb-4">
-                <div className="w-14 h-14 rounded-full bg-sage/20 flex items-center justify-center">
-                  <Check className="w-7 h-7 text-sage" />
-                </div>
-              </div>
-              <h3 className="font-[var(--font-serif)] font-bold text-xl text-slate-deep text-center mb-2">
-                Application received
-              </h3>
-              <p className="text-slate-deep/80 text-center text-sm mb-6">
-                Please log in to track your application status.
-              </p>
-              <div className="flex justify-center">
-                <Loader2 className="w-6 h-6 text-sage animate-spin" />
-              </div>
-              <button
-                type="button"
-                onClick={handleCloseModal}
-                className="mt-4 w-full py-2.5 rounded-[var(--radius-xl)] bg-slate-deep/10 text-slate-deep hover:bg-slate-deep/20 text-sm font-medium"
-              >
-                Close
-              </button>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </Layout>
   )
 }

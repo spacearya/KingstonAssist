@@ -54,6 +54,22 @@
       "business_description": "dlfjsdjflsjajflsjdviswasrand",
       "category": "Producer",
       "address": ""
+    },
+    {
+      "email": "ar@gmail.com",
+      "hashed_password": "b79c6f8864814a5c639800c69737e673b9108a013957b874822221a3266897c8",
+      "name": "ar",
+      "progress": 1,
+      "is_verified": false,
+      "status": "approved"
+    },
+    {
+      "email": "you@gmail.com",
+      "hashed_password": "b79c6f8864814a5c639800c69737e673b9108a013957b874822221a3266897c8",
+      "name": "you",
+      "progress": 6,
+      "is_verified": false,
+      "status": "approved"
     }
   ]
 }

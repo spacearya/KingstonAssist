@@ -70,3 +70,12 @@ h1, h2, h3 {
 .pulse-ring-on-focus:focus-within {
   animation: pulse-ring 2s ease-in-out infinite;
 }
+
+@keyframes liquid-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.liquid-float {
+  animation: liquid-float 8s ease-in-out infinite;
+}

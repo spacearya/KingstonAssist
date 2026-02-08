@@ -73,7 +73,7 @@ export default function DiscoveryPage() {
         transition={pageTransition}
       >
         <h1 className="font-[var(--font-serif)] text-3xl md:text-4xl font-bold text-slate-deep mb-2">
-          Kingston Discovery
+          Explore
         </h1>
         <p className="text-slate-deep/70 mb-8">
           Explore local restaurants, places to visit, and events in Kingston.
@@ -82,7 +82,6 @@ export default function DiscoveryPage() {
         {loading && (
           <p className="text-slate-deep/60 text-center py-12">Loading categories…</p>
         )}
-
         {error && !loading && (
           <p className="text-red-600 text-center py-4">
             Could not load data. Make sure the API is running on http://localhost:8000
