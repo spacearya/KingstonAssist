@@ -62,11 +62,109 @@ FOOD_KEYWORD_MAP = {
     "gift": ["shops.txt"],
     "consignment": ["shops.txt"],
     "vintage": ["shops.txt"],
+    "secondhand": ["shops.txt"],
+    "second-hand": ["shops.txt"],
+    "used": ["shops.txt"],
+    "pre-loved": ["shops.txt"],
+    "sustainable": ["shops.txt"],  # many thrift/consignment shops describe themselves this way
 }
 
 PLACE_KEYWORDS = ["place", "places", "visit", "visiting", "attraction", "attractions", "museum", "park", "tourist", "sightseeing", "landmark", "monument", "see", "sight", "explore", "exploring", "tour", "tours", "destination", "destinations", "good", "best", "recommend", "recommendation"]
 
 EVENT_KEYWORDS = ["event", "events", "festival", "show", "concert", "meetup", "fair", "carnival", "exhibition", "music", "performance", "happening"]
+
+# Stop words to exclude from keyword matching
+STOP_WORDS = {"the", "a", "an", "some", "any", "about", "tell", "me", "okay", "ok", "good", "best", "please", "can", "you", "what", "where", "when", "how", "want", "see", "find", "looking", "like", "need", "this", "that", "city", "kingston"}
+
+# Common misspellings / typos -> canonical form for intent and search
+TYPO_TO_CANONICAL = {
+    "resturant": "restaurant", "restaraunt": "restaurant", "restorant": "restaurant", "restaurants": "restaurants",
+    "thrif": "thrift", "thrft": "thrift", "thift": "thrift", "thrift": "thrift",
+    "cafee": "cafe", "cofee": "cafe", "coffee": "coffee", "cafe": "cafe",
+    "bakary": "bakery", "bakerys": "bakeries", "bakeries": "bakeries",
+    "cloths": "clothes", "clothing": "clothing", "clothes": "clothes",
+    "consignement": "consignment", "consignment": "consignment",
+    "vintge": "vintage", "vintage": "vintage",
+    "boutiqe": "boutique", "boutique": "boutique",
+    "footware": "footwear", "footwear": "footwear",
+    "brewerys": "breweries", "brewery": "brewery", "breweries": "breweries",
+    "gelatto": "gelato", "gelato": "gelato", "icecream": "ice cream",
+    "attraction": "attraction", "attractions": "attractions",
+    "recomend": "recommend", "reccomend": "recommend",
+}
+
+
+def _edit_distance(s1: str, s2: str) -> int:
+    """Levenshtein edit distance between two strings."""
+    if not s1:
+        return len(s2)
+    if not s2:
+        return len(s1)
+    n, m = len(s1), len(s2)
+    dp = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(n + 1):
+        dp[i][0] = i
+    for j in range(m + 1):
+        dp[0][j] = j
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            cost = 0 if s1[i - 1] == s2[j - 1] else 1
+            dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost)
+    return dp[n][m]
+
+
+def _best_fuzzy_keyword(word: str, candidates: List[str], max_edits: int = 2) -> Optional[str]:
+    """Return the best-matching candidate for word (by edit distance) if within max_edits. Prefer exact match."""
+    if not word or len(word) < 3:
+        return None
+    w = word.lower()
+    if w in candidates:
+        return w
+    best = None
+    best_d = max_edits + 1
+    for c in candidates:
+        if abs(len(c) - len(w)) > max_edits:
+            continue
+        d = _edit_distance(w, c)
+        if d <= max_edits and d < best_d:
+            best_d = d
+            best = c
+    return best
+
+
+def normalize_question_for_keywords(question: str) -> str:
+    """Normalize question for keyword lookup: replace known typos so intent is detected correctly."""
+    words = question.lower().split()
+    normalized = []
+    all_map_keys = list(FOOD_KEYWORD_MAP.keys())
+    for w in re.sub(r"[^\w\s]", " ", question.lower()).split():
+        if len(w) < 2:
+            continue
+        canonical = TYPO_TO_CANONICAL.get(w, w)
+        if canonical == w and len(w) >= 4:
+            fuzzy = _best_fuzzy_keyword(w, all_map_keys, max_edits=2)
+            if fuzzy:
+                canonical = fuzzy
+        normalized.append(canonical)
+    return " ".join(normalized) if normalized else question.lower()
+
+
+def expand_keywords_for_search(keywords: List[str]) -> List[str]:
+    """Expand keywords with canonical forms so search matches despite typos. Used for entry text matching."""
+    expanded = set()
+    all_canonicals = set(FOOD_KEYWORD_MAP.keys()) | set(PLACE_KEYWORDS) | set(EVENT_KEYWORDS)
+    for kw in keywords:
+        if not kw or len(kw) < 2:
+            continue
+        k = kw.lower()
+        expanded.add(k)
+        canonical = TYPO_TO_CANONICAL.get(k, k)
+        expanded.add(canonical)
+        if len(k) >= 4:
+            fuzzy = _best_fuzzy_keyword(k, list(all_canonicals), max_edits=2)
+            if fuzzy:
+                expanded.add(fuzzy)
+    return [x for x in expanded if len(x) > 2]
 
 
 def load_data(file_path: Path) -> str:
@@ -379,36 +477,43 @@ def load_all_data() -> Dict[str, Dict[str, List[Dict]]]:
 
 
 def detect_query_specificity(question: str) -> Tuple[bool, List[str]]:
-    """Detect if query is specific (targets one category) or vague (needs multiple categories)"""
+    """Detect if query is specific (targets one category) or vague (needs multiple categories).
+    Uses typo-normalized question so misspellings (e.g. thrif, resturant) still map correctly."""
     question_lower = question.lower()
+    # Normalize typos so "thrif stores" / "resturants" are detected
+    normalized = normalize_question_for_keywords(question)
+    search_text = question_lower + " " + normalized
     
-    # Check for specific food type keywords
+    # Check for specific food type keywords (exact or typo-corrected)
     specific_files = []
     for keyword, files in FOOD_KEYWORD_MAP.items():
-        if keyword in question_lower:
+        if keyword in search_text:
             specific_files.extend(files)
     
     # Remove duplicates while preserving order
     specific_files = list(dict.fromkeys(specific_files))
     
-    # Check for place keywords
-    has_place_query = any(kw in question_lower for kw in PLACE_KEYWORDS)
+    # Check for place keywords (in original or normalized)
+    has_place_query = any(kw in search_text for kw in PLACE_KEYWORDS)
     
     # Check for event keywords
-    has_event_query = any(kw in question_lower for kw in EVENT_KEYWORDS)
+    has_event_query = any(kw in search_text for kw in EVENT_KEYWORDS)
     
-    # If specific files found, it's a specific query
+    # If specific files found (e.g. thrift -> shops, restaurant -> restaurants), it's a specific query
     is_specific = len(specific_files) > 0
     
-    # If query mentions multiple categories, it's vague
+    # If query mentions multiple categories, treat as vague only when we don't have a clear food/shop ask.
+    # E.g. "see thrift stores" has both "see" (place) and "thrift" (shops) - user wants shops, so keep specific.
     category_count = sum([
         len(specific_files) > 0,
         has_place_query,
         has_event_query
     ])
-    
-    if category_count > 1:
-        is_specific = False  # Multiple categories = vague
+    if category_count > 1 and not specific_files:
+        is_specific = False
+    elif specific_files:
+        # User asked for a specific food/shop type (thrift, restaurant, etc.) - prioritize that
+        is_specific = True
     
     return is_specific, specific_files
 
@@ -540,8 +645,8 @@ def search_in_entries(entries: List[Dict], keywords: List[str], location_keyword
     if return_all_if_no_keywords and not keywords and not location_keywords and not target_date and not target_month:
         return entries
     
-    # Filter out common stop words and question words that don't help with matching
-    meaningful_keywords = [kw for kw in keywords if kw.lower() not in ["the", "a", "an", "some", "any", "about", "tell", "me", "okay", "ok", "good", "best", "please", "can", "you", "what", "where", "when", "how"]]
+    # Filter out stop words (caller may pass expanded/typo-corrected keywords)
+    meaningful_keywords = [kw for kw in keywords if kw and kw.lower() not in STOP_WORDS and len(kw) > 2]
     
     for entry in entries:
         entry_text = ' '.join(str(v).lower() for v in entry.values() if v)
@@ -554,8 +659,8 @@ def search_in_entries(entries: List[Dict], keywords: List[str], location_keyword
             if not event_in_month(entry, target_month):
                 continue
         
-        # Check if any meaningful keyword matches
-        if meaningful_keywords and any(kw.lower() in entry_text for kw in meaningful_keywords if len(kw) > 2):
+        # Match if any keyword appears in name, description, category, location, etc.
+        if meaningful_keywords and any(kw.lower() in entry_text for kw in meaningful_keywords):
             matches.append(entry)
         # Check location if provided
         elif location_keywords:
@@ -577,11 +682,15 @@ def search_in_entries(entries: List[Dict], keywords: List[str], location_keyword
 
 
 def find_relevant_context(question: str, all_data: Dict) -> Dict:
-    """Find relevant context based on question specificity, with date filtering for events"""
+    """Find relevant context based on question specificity, with date filtering for events.
+    Uses expanded keywords (typo-corrected + fuzzy) so descriptions/categories match even with misspellings."""
     question_lower = question.lower()
-    keywords = [word for word in question_lower.split() if len(word) > 2]
-    # Filter out common stop words that don't help with matching
-    meaningful_keywords = [kw for kw in keywords if kw.lower() not in ["the", "a", "an", "some", "any", "about", "tell", "me", "okay", "ok", "good", "best", "please", "can", "you", "what", "where", "when", "how"]]
+    # Extract words (allow hyphenated and apostrophes for "ice-cream", "don't")
+    words = re.findall(r"\b[\w']+\b", question_lower)
+    keywords = [w for w in words if len(w) > 2]
+    meaningful_keywords = [kw for kw in keywords if kw.lower() not in STOP_WORDS]
+    # Expand with canonical forms so "thrif" matches entries containing "thrift", etc.
+    search_keywords = expand_keywords_for_search(meaningful_keywords)
     
     # Detect "full list" or "all" requests
     wants_full_list = any(phrase in question_lower for phrase in ["full list", "all", "complete list", "everything", "entire list"])
@@ -632,7 +741,7 @@ def find_relevant_context(question: str, all_data: Dict) -> Dict:
             file_key = file_name.replace(".txt", "")
             if file_key in all_data["food"]:
                 entries = all_data["food"][file_key]
-                matches = search_in_entries(entries, meaningful_keywords, location_keywords, is_food=True)
+                matches = search_in_entries(entries, search_keywords, location_keywords, is_food=True)
                 if matches:
                     # Already sorted by certification in search_in_entries
                     relevant_context["food"][file_key] = matches if wants_full_list else matches[:10]
@@ -685,7 +794,7 @@ def find_relevant_context(question: str, all_data: Dict) -> Dict:
                     # Try to find matches first
                     # Use return_all_if_no_keywords for very vague queries
                     is_vague_food_query = len(meaningful_keywords) <= 3 and not location_keywords
-                    matches = search_in_entries(entries, meaningful_keywords, location_keywords, return_all_if_no_keywords=is_vague_food_query, is_food=True)
+                    matches = search_in_entries(entries, search_keywords, location_keywords, return_all_if_no_keywords=is_vague_food_query, is_food=True)
                     if matches:
                         # Already sorted by certification in search_in_entries
                         relevant_context["food"][file_key] = matches if wants_full_list else matches[:10]
@@ -701,7 +810,7 @@ def find_relevant_context(question: str, all_data: Dict) -> Dict:
                     # For vague place queries, be more lenient - try keyword matching first
                     # Use return_all_if_no_keywords for very vague queries (like "good places to visit")
                     is_vague_place_query = (len(meaningful_keywords) <= 3 and not location_keywords) or any(word in question_lower for word in ["good", "best", "recommend", "some", "tell me about", "places to visit"])
-                    matches = search_in_entries(entries, meaningful_keywords, location_keywords, return_all_if_no_keywords=is_vague_place_query)
+                    matches = search_in_entries(entries, search_keywords, location_keywords, return_all_if_no_keywords=is_vague_place_query)
                     if matches:
                         relevant_context["places"][file_key] = matches if wants_full_list else matches[:5]
                     else:
@@ -979,7 +1088,13 @@ def ask(question: str, language: str = "en"):
 """
     
     # Create intelligent prompt
-    prompt = f"""You are a helpful city guide assistant for Kingston, Ontario. Use the following data to answer the user's question accurately and helpfully.{language_instruction}
+    prompt = f"""You are a friendly, helpful city guide assistant for Kingston, Ontario. Your goal is to give the user the best possible answer using ONLY the data below.
+
+INTERPRETATION & INTENT:
+- Interpret the user's question by intent, not just exact words. If they ask for "thrif stores", "cheap clothes", "secondhand shops", or "places to buy used stuff", use the SHOPS data (thrift, consignment, vintage) and answer helpfully.
+- Ignore minor typos and misspellings (e.g. resturant, cafee, thrif, cloths). Assume they mean the closest sensible category (restaurant, cafe, thrift, clothes) and answer from the relevant data.
+- If the question could match several types (e.g. "stores" = shops or places), prefer the category that has matching data and give a clear, concrete answer. Do not say "I don't have information" if the data below clearly contains relevant entries—use them.
+- Be conversational and concise. Lead with the most relevant results; add a short friendly line if helpful (e.g. "Here are some thrift and consignment options in Kingston:").
 
 Available Data:
 {combined_context}
@@ -1043,7 +1158,8 @@ CRITICAL FORMATTING RULES - FOLLOW EXACTLY:
     - If user asks for events on a specific date (e.g., "events on feb 8") - show ALL events that fall on that date (including events that start before and end after that date)
     - If user asks for events in a month (e.g., "events in february") - show ALL events in that month
     - For vague queries without "full list" - show a sample (3-5 items) from each category
-    - Apply similar logic for food and places: "all restaurants" = full list, vague query = sample
+    - Apply similar logic for food, shops, and places: "all restaurants" = full list, vague query = sample
+    - Match by meaning: "thrift"/"secondhand"/"consignment"/"vintage" → use SHOPS data; "cheap clothes" or "used clothing" → SHOPS. Always prefer giving a helpful answer from the data over saying you don't have information.
 
 EXAMPLE FORMAT:
 {example_format}

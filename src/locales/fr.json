@@ -7,7 +7,7 @@
     "openMenu": "Ouvrir le menu"
   },
   "home": {
-    "title": "Bienvenue sur, KingstonAI",
+    "title": "Bienvenue sur, Anang AI",
     "subtitle": "Tourisme durable — produits locaux, lieux et activités",
     "aiAssistant": "Assistant de voyage IA",
     "placeholder": "Demandez des restaurants, des lieux, des événements...",
@@ -21,7 +21,7 @@
       "clearConversation": "Effacer la conversation"
     },
     "assistant": {
-      "title": "Assistant KingstonAI",
+      "title": "Assistant Anang AI",
       "subtitle": "Votre guide de voyage local"
     }
   },
