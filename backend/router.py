@@ -298,28 +298,48 @@ def parse_place_entry(entry_text: str) -> Dict:
             accessibility = line.replace("Accessibility:", "").strip()
             # Normalize accessibility values
             accessibility_lower = accessibility.lower()
-            if "full access" in accessibility_lower or accessibility_lower == "yes":
+            # Check for NULL (uppercase) first
+            if accessibility.upper() == "NULL" or accessibility_lower in ["null", "none", ""]:
+                entry["accessibility"] = "null"  # Keep as string for consistency
+            elif "full access" in accessibility_lower or accessibility_lower == "yes":
                 entry["accessibility"] = "Full Access"
             elif "partial access" in accessibility_lower or "partial" in accessibility_lower:
                 entry["accessibility"] = "Partial Access"
+            elif "accessible with assistance" in accessibility_lower:
+                entry["accessibility"] = "Accessible with Assistance"
             elif "limited" in accessibility_lower:
                 entry["accessibility"] = "Limited"
-            elif accessibility_lower in ["null", "none", ""]:
-                entry["accessibility"] = "null"  # Keep as string for consistency
             else:
-                entry["accessibility"] = accessibility  # Keep original if not recognized
+                # Try to extract key phrase from longer descriptions
+                if "full" in accessibility_lower and "access" in accessibility_lower:
+                    entry["accessibility"] = "Full Access"
+                elif "partial" in accessibility_lower:
+                    entry["accessibility"] = "Partial Access"
+                elif "limited" in accessibility_lower:
+                    entry["accessibility"] = "Limited"
+                else:
+                    entry["accessibility"] = "null"  # Default to null if can't determine
         elif line.startswith("Washrooms:"):
             washrooms = line.replace("Washrooms:", "").strip()
             # Normalize washroom values
             washrooms_lower = washrooms.lower()
-            if washrooms_lower in ["available", "yes", "accessible washrooms available"]:
+            # Check for NULL (uppercase) first
+            if washrooms.upper() == "NULL" or washrooms_lower in ["null", "none", ""]:
+                entry["washrooms"] = "null"
+            elif "accessible washrooms available" in washrooms_lower or "washrooms available" in washrooms_lower or washrooms_lower in ["available", "yes"]:
                 entry["washrooms"] = "Available"
-            elif "partial" in washrooms_lower:
+            elif "partial" in washrooms_lower or "partially accessible" in washrooms_lower:
                 entry["washrooms"] = "Partial Available"
-            elif washrooms_lower in ["not available", "not accessible", "no", "null", "none", ""]:
+            elif "not available" in washrooms_lower or "not accessible" in washrooms_lower or washrooms_lower in ["no"]:
                 entry["washrooms"] = "Not Available"
             else:
-                entry["washrooms"] = washrooms  # Keep original if not recognized
+                # Try to determine availability from description
+                if "available" in washrooms_lower:
+                    entry["washrooms"] = "Available"
+                elif "not" in washrooms_lower:
+                    entry["washrooms"] = "Not Available"
+                else:
+                    entry["washrooms"] = "null"  # Default to null if can't determine
     
     # If no URL found but location exists, generate Google Maps URL
     if not entry.get("url") and entry.get("location") and entry.get("name"):
@@ -963,9 +983,9 @@ def format_context_for_prompt(context_dict: Dict) -> str:
                         place_parts.append(f"   Hours: {entry['hours']}")
                     if entry.get('fees'):
                         place_parts.append(f"   Fees: {entry['fees']}")
-                    if entry.get('accessibility') and entry.get('accessibility') != 'null':
+                    if entry.get('accessibility') and entry.get('accessibility').lower() not in ['null', 'none', '']:
                         place_parts.append(f"   Accessibility: {entry['accessibility']}")
-                    if entry.get('washrooms') and entry.get('washrooms') != 'null':
+                    if entry.get('washrooms') and entry.get('washrooms').lower() not in ['null', 'none', '']:
                         place_parts.append(f"   Washrooms: {entry['washrooms']}")
         if place_parts:
             parts.append('\n'.join(place_parts))

@@ -7,11 +7,7 @@
     "openMenu": "Open menu"
   },
   "home": {
-<<<<<<< Updated upstream
-    "title": "Welcome to, Anang AI",
-=======
     "title": "Welcome to, AnangAI",
->>>>>>> Stashed changes
     "subtitle": "Sustainable tourism — local produce, places & activities",
     "aiAssistant": "AI trip assistant",
     "placeholder": "Ask about restaurants, places, events...",
@@ -25,11 +21,7 @@
       "clearConversation": "Clear conversation"
     },
     "assistant": {
-<<<<<<< Updated upstream
-      "title": "Anang AI Assistant",
-=======
       "title": "AnangAI Assistant",
->>>>>>> Stashed changes
       "subtitle": "Your local travel guide"
     }
   },

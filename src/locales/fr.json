@@ -7,7 +7,7 @@
     "openMenu": "Ouvrir le menu"
   },
   "home": {
-    "title": "Bienvenue sur, Anang AI",
+    "title": "Bienvenue sur, AnangAI",
     "subtitle": "Tourisme durable — produits locaux, lieux et activités",
     "aiAssistant": "Assistant de voyage IA",
     "placeholder": "Demandez des restaurants, des lieux, des événements...",
@@ -21,7 +21,7 @@
       "clearConversation": "Effacer la conversation"
     },
     "assistant": {
-      "title": "Assistant Anang AI",
+      "title": "Assistant AnangAI",
       "subtitle": "Votre guide de voyage local"
     }
   },
