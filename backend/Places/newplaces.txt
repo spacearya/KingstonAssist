@@ -1,0 +1,254 @@
+KINGSTON ATTRACTIONS DATABASE
+================================
+
+Place Name: Fort Henry
+Location: 1 Fort Henry Dr.
+Location URL: https://www.google.com/maps/search/?api=1&query=Fort+Henry,+1+Fort+Henry+Dr,+Kingston,+ON
+About: A massive 19th-century British military fortress featuring dramatic sunset ceremonies and daily soldier drills. It is a UNESCO World Heritage site offering stunning views of Lake Ontario and the city.
+Hours: Daily: 10:00 AM – 5:00 PM (May–Sept)
+Fees: ~$20.00 - $25.00
+
+Place Name: Kingston Penitentiary
+Location: 560 King St. W
+Location URL: https://www.google.com/maps/search/?api=1&query=Kingston+Penitentiary,+560+King+St+W,+Kingston,+ON
+About: Canada's oldest and most notorious maximum-security prison, now open for guided tours that explore its architecture and history. Tours provide a chilling and fascinating look into the lives of both inmates and guards.
+Hours: Daily: 9:00 AM – 5:00 PM (May–Oct)
+Fees: $42.13 - $81.13
+
+Place Name: 1000 Islands Cruises
+Location: 248 Ontario St.
+Location URL: https://www.google.com/maps/search/?api=1&query=1000+Islands+Cruises,+248+Ontario+St,+Kingston,+ON
+About: Relaxing sightseeing and dinner cruises that weave through the world-famous Thousand Islands. It is the best way to see the region's waterfront estates, lush greenery, and historic shipwrecks.
+Hours: Daily: Varies (May – Oct)
+Fees: ~$45.00 - $110.00
+
+Place Name: Bellevue House
+Location: 35 Centre St.
+Location URL: https://www.google.com/maps/search/?api=1&query=Bellevue+House,+35+Centre+St,+Kingston,+ON
+About: The restored villa of Canada's first Prime Minister, Sir John A. Macdonald, set in beautiful Italianate gardens. The site offers a deep dive into the complex political history of Canada's confederation.
+Hours: Daily: 10:00 AM – 5:00 PM (Seasonal)
+Fees: $10.00 (Youth Free)
+
+Place Name: Kingston Trolley Tours
+Location: 209 Ontario St.
+Location URL: https://www.google.com/maps/search/?api=1&query=Kingston+Trolley+Tours,+209+Ontario+St,+Kingston,+ON
+About: A hop-on, hop-off red trolley that loops through the historic downtown and major sightseeing stops. It is the most convenient way for tourists to navigate the city while hearing live commentary.
+Hours: Daily: 10:00 AM – 5:00 PM (Seasonal)
+Fees: ~$42.00 (24h Pass)
+
+Place Name: The Haunted Walk
+Location: 200 Ontario St.
+Location URL: https://www.google.com/maps/search/?api=1&query=The+Haunted+Walk,+200+Ontario+St,+Kingston,+ON
+About: Award-winning lantern-lit walking tours that explore Kingston's dark history and ghost stories. Professional guides lead you through limestone alleys and old graveyards at night.
+Hours: Evenings (Year-round/Weekends)
+Fees: ~$29.99
+
+Place Name: Canada's Pen Museum
+Location: 555 King St. W
+Location URL: https://www.google.com/maps/search/?api=1&query=Canada%27s+Pen+Museum,+555+King+St+W,+Kingston,+ON
+About: Located in the former Warden's residence, this museum houses an incredible collection of inmate-made contraband and prison artifacts. It provides a unique perspective on the evolution of Canada's justice system.
+Hours: Daily: 9:00 AM – 4:00 PM (Seasonal)
+Fees: By Donation
+
+Place Name: Great Lakes Museum
+Location: 55 Ontario St.
+Location URL: https://www.google.com/maps/search/?api=1&query=Great+Lakes+Museum,+55+Ontario+St,+Kingston,+ON
+About: Home to the historic SS Keewatin, this museum preserves the maritime heritage of the Great Lakes. Visitors can explore a dry dock and tour the luxury Edwardian-era steamship.
+Hours: Tue–Sun: 10:00 AM – 4:00 PM
+Fees: $11.00 - $30.00
+
+Place Name: The PumpHouse
+Location: 23 Ontario St
+Location URL: https://www.google.com/maps/search/?api=1&query=The+PumpHouse,+23+Ontario+St,+Kingston,+ON
+About: An original 1849 water pumping station that now showcases the history of steam power and Victorian engineering. It features a massive collection of model trains that is a hit with families.
+Hours: Tue–Sat: 10:00 AM – 4:00 PM
+Fees: ~$7.30
+
+Place Name: Museum of Health Care
+Location: 32 George St.
+Location URL: https://www.google.com/maps/search/?api=1&query=Museum+of+Health+Care,+32+George+St,+Kingston,+ON
+About: Located in the historic Ann Baillie Building, this museum tells the story of medical history through thousands of artifacts. It covers everything from ancient surgical tools to modern medicine.
+Hours: Wed–Fri: 10:00 AM – 4:00 PM
+Fees: $10.00
+
+Place Name: Military C & E Museum
+Location: 95 Craftsman Blvd
+Location URL: https://www.google.com/maps/search/?api=1&query=Military+C+%26+E+Museum,+95+Craftsman+Blvd,+Kingston,+ON
+About: Explores the history of military communications and electronics from the First World War to the modern digital age. It features interactive displays and military vehicles.
+Hours: Mon–Fri: 10:00 AM – 3:30 PM
+Fees: $8.85
+
+Place Name: Lemoine Point
+Location: 1440 Coverdale Dr
+Location URL: https://www.google.com/maps/search/?api=1&query=Lemoine+Point,+1440+Coverdale+Dr,+Kingston,+ON
+About: A massive nature conservation area on the shores of Lake Ontario with over 11 km of hiking trails. It is perfect for birdwatching, photography, and finding peaceful forest scenery.
+Hours: Daily: 7:30 AM – Dusk
+Fees: Free
+
+Place Name: Little Cataraqui Creek
+Location: 1641 Perth Rd
+Location URL: https://www.google.com/maps/search/?api=1&query=Little+Cataraqui+Creek,+1641+Perth+Rd,+Kingston,+ON
+About: A 394-hectare conservation area offering marshland trails, canoeing in summer, and cross-country skiing in winter. The outdoor education centre hosts many nature programs for families.
+Hours: Daily: 7:30 AM – Dusk
+Fees: $5.00
+
+Place Name: Agnes Etherington Art Centre
+Location: 36 University Ave
+Location URL: https://www.google.com/maps/search/?api=1&query=Agnes+Etherington+Art+Centre,+36+University+Ave,+Kingston,+ON
+About: Queen's University's premiere art gallery, known for its extensive European and contemporary collections. It is currently being reimagined into a major new facility.
+Hours: Temporary Digital/Offsite
+Fees: Free
+
+Place Name: The Tett Centre
+Location: 370 King St W
+Location URL: https://www.google.com/maps/search/?api=1&query=The+Tett+Centre,+370+King+St+W,+Kingston,+ON
+About: A vibrant arts hub housed in a historic brewery building, featuring pottery, weaving, and dance studios. It is a community-focused space where visitors can watch local artists at work.
+Hours: Daily: Varies
+Fees: Free Entry
+
+Place Name: Isabel Bader Centre
+Location: 390 King St W
+Location URL: https://www.google.com/maps/search/?api=1&query=Isabel+Bader+Centre,+390+King+St+W,+Kingston,+ON
+About: A stunning waterfront performing arts hall known for its world-class acoustics and architecture. It hosts professional musicians, theatre productions, and film festivals year-round.
+Hours: Varies by Performance
+Fees: ~$15 - $75
+
+Place Name: Martello Alley
+Location: 203B Wellington St
+Location URL: https://www.google.com/maps/search/?api=1&query=Martello+Alley,+203B+Wellington+St,+Kingston,+ON
+About: A whimsical, French-themed outdoor art alley featuring the work of local Kingston artists. It is one of the most Instagrammable and colorful spots in the downtown core.
+Hours: Daily: 10:00 AM – 5:00 PM
+Fees: Free Entry
+
+Place Name: Improbable Escapes
+Location: 303 Bagot St
+Location URL: https://www.google.com/maps/search/?api=1&query=Improbable+Escapes,+303+Bagot+St,+Kingston,+ON
+About: High-quality, award-winning escape rooms with themes ranging from jungle adventures to museum heists. They offer both indoor rooms and outdoor "adventure" games.
+Hours: Daily: 10:00 AM – 11:00 PM
+Fees: ~$30.00
+
+Place Name: Murney Tower
+Location: King St W & Barrie St
+Location URL: https://www.google.com/maps/search/?api=1&query=Murney+Tower,+King+St+W+and+Barrie+St,+Kingston,+ON
+About: A 19th-century Martello tower built to defend against American invasion, now a fascinating museum of military life. Inside, you can see 1840s living quarters and a massive rotating cannon.
+Hours: Daily: 10:00 AM – 5:00 PM (Summer)
+Fees: By Donation
+
+Place Name: Kingston Food Tours
+Location: 209 Ontario St
+Location URL: https://www.google.com/maps/search/?api=1&query=Kingston+Food+Tours,+209+Ontario+St,+Kingston,+ON
+About: Guided walking tours that stop at the city's best independent restaurants and artisanal shops. It combines local history with delicious gourmet tastings.
+Hours: Weekends (Select Days)
+Fees: $65.00 - $85.00
+
+Place Name: City Hall Tours
+Location: 216 Ontario St.
+Location URL: https://www.google.com/maps/search/?api=1&query=City+Hall+Kingston,+216+Ontario+St,+Kingston,+ON
+About: A National Historic Site and one of the finest examples of 19th-century architecture in Canada. Guided tours take you through the grand chambers where the city's history was shaped.
+Hours: Mon–Fri: 8:30 AM – 4:30 PM
+Fees: Free
+
+Place Name: The Screening Room
+Location: 120 Princess St
+Location URL: https://www.google.com/maps/search/?api=1&query=The+Screening+Room,+120+Princess+St,+Kingston,+ON
+About: A charming independent cinema that shows a mix of art-house films, documentaries, and cult classics. It is famous for its retro atmosphere and "real butter" popcorn.
+Hours: Daily: 1:00 PM – 10:00 PM
+Fees: $14.00
+
+Place Name: Miller Museum of Geology
+Location: 36 Union St.
+Location URL: https://www.google.com/maps/search/?api=1&query=Miller+Museum+of+Geology,+36+Union+St,+Kingston,+ON
+About: An Earth Science museum featuring dinosaur fossils, rare minerals, and hands-on exhibits about the planet's history. It is a hidden gem located within Queen's University campus.
+Hours: Mon–Fri: 9:00 AM – 4:00 PM
+Fees: Free
+
+Place Name: Discovery Rides
+Location: 209 Ontario St
+Location URL: https://www.google.com/maps/search/?api=1&query=Discovery+Rides,+209+Ontario+St,+Kingston,+ON
+About: Offers electric bike rentals and guided tours to help you explore Kingston's waterfront and hidden paths. It is an eco-friendly and effortless way to see the city.
+Hours: Daily: 9:30 AM – 5:30 PM (Summer)
+Fees: ~$40/hr - $85
+
+Place Name: Ahoy Rentals
+Location: 21 Ontario St.
+Location URL: https://www.google.com/maps/search/?api=1&query=Ahoy+Rentals,+21+Ontario+St,+Kingston,+ON
+About: Located right on the harbor, they offer kayaks, sailboats, and bicycle rentals. Perfect for those who want to experience the 1000 Islands from the water at their own pace.
+Hours: Daily: 10:00 AM – 6:00 PM (Summer)
+Fees: $12/hr - $18/hr
+
+Place Name: Skywood Eco Adventure
+Location: 12785 Hwy 2
+Location URL: https://www.google.com/maps/search/?api=1&query=Skywood+Eco+Adventure,+12785+Hwy+2,+Kingston,+ON
+About: An outdoor adventure park featuring ziplines, canopy walks, and aerial challenge courses. It offers a thrilling way to experience the forests of the 1000 Islands region.
+Hours: Daily: 9:00 AM – 4:00 PM (Seasonal)
+Fees: ~$35.00 - $50.00
+
+Place Name: VR Escapes
+Location: 240 Counter St
+Location URL: https://www.google.com/maps/search/?api=1&query=VR+Escapes,+240+Counter+St,+Kingston,+ON
+About: A state-of-the-art virtual reality centre offering solo games, multiplayer arenas, and VR escape rooms. It is a popular spot for tech enthusiasts and gamers of all ages.
+Hours: Wed–Sun: 12:00 PM – 9:00 PM
+Fees: ~$32.00/hr
+
+Place Name: Lumberjack's Axe Throwing
+Location: 240 Counter St
+Location URL: https://www.google.com/maps/search/?api=1&query=Lumberjack%27s+Axe+Throwing,+240+Counter+St,+Kingston,+ON
+About: A high-energy indoor venue where you can learn the art of competitive axe throwing. It is a great group activity for birthdays, team building, or just blowing off steam.
+Hours: Wed–Sun: Varies
+Fees: ~$30.00
+
+Place Name: Domino Theatre
+Location: 52 Church St
+Location URL: https://www.google.com/maps/search/?api=1&query=Domino+Theatre,+52+Church+St,+Kingston,+ON
+About: Kingston's long-running community theatre group performing in a converted 19th-century building. They produce a variety of dramas, comedies, and musicals throughout the season.
+Hours: Showtimes at 7:30 PM
+Fees: $20.00
+
+Place Name: The Grand Theatre
+Location: 218 Princess St
+Location URL: https://www.google.com/maps/search/?api=1&query=The+Grand+Theatre,+218+Princess+St,+Kingston,+ON
+About: The primary performing arts venue for professional touring acts, musicals, and the Kingston Symphony. It features a beautifully restored Victorian interior and top-tier acoustics.
+Hours: Mon-Fri 12 PM - 4:30 PM
+Fees: Varies
+
+Place Name: Sherlock's Escapes
+Location: 298 Bagot St
+Location URL: https://www.google.com/maps/search/?api=1&query=Sherlock%27s+Escapes,+298+Bagot+St,+Kingston,+ON
+About: Narrative-driven escape rooms that challenge you to use logic and detective skills to solve mysteries. Their rooms are known for being immersive and highly detailed.
+Hours: Tue–Sun: Varies
+Fees: ~$30.00
+
+Place Name: Rockport Boat Line
+Location: 23 Front St, Rockport
+Location URL: https://www.google.com/maps/search/?api=1&query=Rockport+Boat+Line,+23+Front+St,+Rockport,+ON
+About: Located a short drive from Kingston, they offer unique cruises including a stop at the famous Boldt Castle. It is a classic 1000 Islands experience with scenic views.
+Hours: Daily: 10:00 AM – 5:00 PM (Summer)
+Fees: ~$35.00 - $55.00
+
+Place Name: Frontenac Schools Museum
+Location: 414 Regent St
+Location URL: https://www.google.com/maps/search/?api=1&query=Frontenac+Schools+Museum,+414+Regent+St,+Kingston,+ON
+About: A charming museum that recreates a rural one-room schoolhouse from the early 1900s. Visitors can sit at old wooden desks and experience what education was like a century ago.
+Hours: Mon–Fri: 10:00 AM – 3:30 PM
+Fees: $5.00
+
+Place Name: Kingston Gaming Nexus
+Location: 270 Bagot St
+Location URL: https://www.google.com/maps/search/?api=1&query=Kingston+Gaming+Nexus,+270+Bagot+St,+Kingston,+ON
+About: A community hub for board games, card games, and tabletop RPGs. They host nightly events and have a massive library of games for visitors to browse and buy.
+Hours: Daily: 10:00 AM – 10:00 PM
+Fees: Free Entry
+
+Place Name: Grass Creek Park
+Location: 2993 Highway 2
+Location URL: https://www.google.com/maps/search/?api=1&query=Grass+Creek+Park,+2993+Highway+2,+Kingston,+ON
+About: A large rural park with a sandy beach, off-leash dog area, and picnic sites. It is also home to the MacLachlan Woodworking Museum and the Sheep Dog Trials.
+Hours: Daily: 8:00 AM – Dusk
+Fees: Free
+
+Place Name: The Spire
+Location: 352 Sydenham St
+Location URL: https://www.google.com/maps/search/?api=1&query=The+Spire,+352+Sydenham+St,+Kingston,+ON
+About: A historic church repurposed as a community and performance space for arts groups. It serves as a beautiful venue for choirs, concerts, and public speaking events.
+Hours: Varies by Event
+Fees: Varies

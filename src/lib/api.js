@@ -97,3 +97,21 @@ export async function getVerifiedBusinesses(category = null) {
   if (!res.ok) throw new Error('Failed to load businesses')
   return res.json()
 }
+
+/**
+ * GET /api/discovery/categories - Get all available data file categories
+ */
+export async function getDiscoveryCategories() {
+  const res = await fetch(`${API_BASE}/api/discovery/categories`)
+  if (!res.ok) throw new Error('Failed to load categories')
+  return res.json()
+}
+
+/**
+ * GET /api/discovery/data?category_id=... - Get entries from a specific category
+ */
+export async function getDiscoveryData(categoryId) {
+  const res = await fetch(`${API_BASE}/api/discovery/data?category_id=${encodeURIComponent(categoryId)}`)
+  if (!res.ok) throw new Error('Failed to load data')
+  return res.json()
+}

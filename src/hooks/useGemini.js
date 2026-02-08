@@ -1,11 +1,10 @@
 import { useState, useCallback } from 'react'
 
-// HOOK_BACKEND_HERE: Replace with real @google/generative-ai when API key is configured.
-// import { GoogleGenerativeAI } from '@google/generative-ai'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 /**
- * Placeholder hook for Gemini Pro integration.
- * Handles trip queries using local JSON data (restaurants, museums) when backend is connected.
+ * Hook for connecting to backend chat API.
+ * Handles trip queries using RAG with restaurants, places, and events data.
  * @returns {{ ask: (prompt: string) => Promise<string>, isThinking: boolean, error: string | null }}
  */
 export function useGemini() {
@@ -16,19 +15,28 @@ export function useGemini() {
     setIsThinking(true)
     setError(null)
     try {
-      // HOOK_BACKEND_HERE: Uncomment and configure when Gemini API key is available.
-      // const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY ?? '')
-      // const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
-      // const result = await model.generateContent(buildSystemPrompt(userPrompt))
-      // const response = await result.response
-      // return response.text()
+      const response = await fetch(`${API_BASE_URL}/api/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: userPrompt }),
+      })
 
-      // Simulated delay and response for demo
-      await new Promise((r) => setTimeout(r, 1200 + Math.random() * 800))
-      return `Based on your request: "${userPrompt}" — Kingston has great local restaurants, museums, and seasonal activities. Explore the Discovery tab for curated local produce and places to visit. (This is a placeholder; connect Gemini API for real suggestions.)`
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ detail: 'Unknown error' }))
+        throw new Error(errorData.detail || `HTTP error! status: ${response.status}`)
+      }
+
+      const data = await response.json()
+      return data.answer || 'Sorry, I received an empty response.'
     } catch (err) {
       const msg = err.message ?? 'Something went wrong.'
       setError(msg)
+      // Return user-friendly error message
+      if (msg.includes('Failed to fetch') || msg.includes('NetworkError')) {
+        return 'Sorry, I couldn\'t connect to the server. Please make sure the backend is running on http://localhost:8000'
+      }
       return `Sorry, I couldn't process that. ${msg}`
     } finally {
       setIsThinking(false)

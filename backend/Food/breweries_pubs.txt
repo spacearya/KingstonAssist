@@ -1,0 +1,42 @@
+KINGSTON BREWERIES & PUBS DATABASE
+================================================================================
+
+Business Name: Kingston Brewing Company
+Location: 34 Clarence St
+Hours: Mon-Sat: 11:30am-2am (Kitchen till 10pm Sun-Thu, 11pm Fri-Sat), Sun: 11am-2am (Kitchen till 10pm)
+Local Sourcing: Ontario craft beer ingredients
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: One of Canada's oldest brewpubs
+
+Business Name: Queen's Pub (AMS)
+Location: Queen's University
+Hours: Mon-Fri: 11:30am-2am, Sat-Sun: 1pm-2am
+Local Sourcing: Local suppliers (some)
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Student-run pub
+
+Business Name: Riverhead Brewing Company
+Location: 631 Fortune Crescent
+Hours: Mon-Wed: 12pm-8pm, Thu: 12pm-10pm, Fri: 12pm-10pm, Sat: 12pm-9pm, Sun: 12pm-6pm
+Local Sourcing: Ontario grains & hops (some)
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: Local craft brewery
+
+Business Name: Skeleton Park Brewery
+Location: 675 Arlington Park Pl
+Hours: Tue-Fri: 12pm-7pm, Sat: 12pm-8pm, Sun-Mon: Closed
+Local Sourcing: Ontario grains & hops
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: Local craft brewery
+
+Business Name: The Toucan Pub
+Location: 76 Princess St
+Hours: Mon-Sun: 11am-2am
+Local Sourcing: Not publicly listed
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: Popular Irish-style pub

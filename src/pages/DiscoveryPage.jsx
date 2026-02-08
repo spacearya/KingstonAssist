@@ -2,37 +2,65 @@ import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import Layout, { pageVariants, pageTransition } from '../components/Layout'
 import TabNavigation from '../components/TabNavigation'
-import ServiceCard from '../components/ServiceCard'
-import { getVerifiedBusinesses } from '../lib/api'
-
-const VERIFIED_TABS = [
-  { id: 'all', label: 'All' },
-  { id: 'Restaurant', label: 'Restaurant' },
-  { id: 'Cafe', label: 'Cafe' },
-  { id: 'Market', label: 'Market' },
-  { id: 'Other', label: 'Other' },
-]
+import DiscoveryCard from '../components/DiscoveryCard'
+import { getDiscoveryCategories, getDiscoveryData } from '../lib/api'
 
 export default function DiscoveryPage() {
-  const [activeTab, setActiveTab] = useState('all')
-  const [businesses, setBusinesses] = useState([])
+  const [activeTab, setActiveTab] = useState(null)
+  const [categories, setCategories] = useState([])
+  const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
+  const [loadingData, setLoadingData] = useState(false)
   const [error, setError] = useState(null)
 
+  // Load categories on mount
   useEffect(() => {
-    getVerifiedBusinesses()
-      .then((data) => setBusinesses(data.businesses ?? []))
+    getDiscoveryCategories()
+      .then((data) => {
+        const cats = data.categories ?? []
+        setCategories(cats)
+        // Set first category as active if available
+        if (cats.length > 0 && !activeTab) {
+          setActiveTab(cats[0].id)
+        }
+      })
       .catch((e) => {
         setError(e.message)
-        setBusinesses([])
+        setCategories([])
       })
       .finally(() => setLoading(false))
   }, [])
 
-  const items = useMemo(() => {
-    if (activeTab === 'all') return businesses
-    return businesses.filter((b) => (b.category || '').toLowerCase() === activeTab.toLowerCase())
-  }, [businesses, activeTab])
+  // Load data when active tab changes
+  useEffect(() => {
+    if (!activeTab) return
+
+    setLoadingData(true)
+    setError(null)
+    getDiscoveryData(activeTab)
+      .then((data) => {
+        setEntries(data.entries ?? [])
+      })
+      .catch((e) => {
+        setError(e.message)
+        setEntries([])
+      })
+      .finally(() => setLoadingData(false))
+  }, [activeTab])
+
+  // Get current category type for cards
+  const currentCategoryType = useMemo(() => {
+    const cat = categories.find((c) => c.id === activeTab)
+    return cat?.type || 'food'
+  }, [categories, activeTab])
+
+  // Format tabs for navigation
+  const tabs = useMemo(() => {
+    return categories.map((cat) => ({
+      id: cat.id,
+      label: cat.label,
+    }))
+  }, [categories])
 
   return (
     <Layout>
@@ -48,27 +76,54 @@ export default function DiscoveryPage() {
           Kingston Discovery
         </h1>
         <p className="text-slate-deep/70 mb-8">
-          Verified local businesses — restaurants, cafés, markets and more.
+          Explore local restaurants, places to visit, and events in Kingston.
         </p>
 
-        <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} tabs={VERIFIED_TABS} />
-
         {loading && (
-          <p className="text-slate-deep/60 text-center py-12">Loading verified businesses…</p>
+          <p className="text-slate-deep/60 text-center py-12">Loading categories…</p>
         )}
-        {error && (
-          <p className="text-red-600 text-center py-4">Could not load businesses. Make sure the API is running.</p>
+
+        {error && !loading && (
+          <p className="text-red-600 text-center py-4">
+            Could not load data. Make sure the API is running on http://localhost:8000
+          </p>
         )}
-        {!loading && !error && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {items.map((item) => (
-              <ServiceCard key={item.id} item={item} />
-            ))}
-          </div>
+
+        {!loading && categories.length > 0 && (
+          <>
+            <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} tabs={tabs} />
+
+            {loadingData && (
+              <p className="text-slate-deep/60 text-center py-12">Loading data…</p>
+            )}
+
+            {!loadingData && error && (
+              <p className="text-red-600 text-center py-4">Could not load data for this category.</p>
+            )}
+
+            {!loadingData && !error && entries.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                {entries.map((entry, index) => (
+                  <DiscoveryCard
+                    key={`${entry.name}-${index}`}
+                    entry={entry}
+                    type={currentCategoryType}
+                  />
+                ))}
+              </div>
+            )}
+
+            {!loadingData && !error && entries.length === 0 && (
+              <p className="text-slate-deep/60 text-center py-12">
+                No entries found in this category.
+              </p>
+            )}
+          </>
         )}
-        {!loading && !error && items.length === 0 && (
+
+        {!loading && categories.length === 0 && !error && (
           <p className="text-slate-deep/60 text-center py-12">
-            No verified businesses in this category yet.
+            No categories available. Please check your data files.
           </p>
         )}
       </motion.div>

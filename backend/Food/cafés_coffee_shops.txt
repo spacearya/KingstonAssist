@@ -1,0 +1,90 @@
+KINGSTON CAFÉS & COFFEE SHOPS DATABASE
+================================================================================
+
+Business Name: Balzac's Coffee Roasters
+Location: 251 Princess St
+Hours: Mon-Sun: 7:00am-6:00pm
+Local Sourcing: Ontario dairy, local pastries
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Canadian specialty coffee chain
+
+Business Name: Chit Chat Café
+Location: 172 Ontario St
+Hours: Tue-Fri: 8:30am-4:00pm, Sat: 9:00am-4:00pm, Sun: 8:30am-4:00pm, Mon: Closed
+Local Sourcing: Not publicly listed
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: Cozy local café
+
+Business Name: CRAVE Coffee House
+Location: 166 Princess St
+Hours: Mon-Sat: 7:30am-4:30pm, Sun: 7:30am-4:30pm
+Local Sourcing: Local baked goods
+Veg/Vegan Options: Yes
+Green Plate Certification: Bronze
+Notes: Popular downtown café
+
+Business Name: Elm Café
+Location: 303 Montreal St
+Hours: Mon-Fri: 7:30am-5:00pm, Sat-Sun: 7:30am-5:00pm
+Local Sourcing: Local baked goods
+Veg/Vegan Options: Yes
+Green Plate Certification: Bronze
+Notes: Neighbourhood café with strong local following
+
+Business Name: Happy Thoughts Café
+Location: 500 Gardiners Rd
+Hours: Mon-Sun: TBD - Call to confirm
+Local Sourcing: Not publicly listed
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Local café with comfort-food menu
+
+Business Name: Hilltop Coffee Stop
+Location: 126 Wellington St
+Hours: Mon-Sun: TBD - Call to confirm
+Local Sourcing: Local pastries & roasters
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Small local coffee shop
+
+Business Name: Juniper Café
+Location: 370 King St W
+Hours: Mon-Sat: 8:00am-7:00pm (till 8pm Jul-Aug), Sun: 9:00am-5:00pm
+Local Sourcing: Local produce (seasonal)
+Veg/Vegan Options: Yes
+Green Plate Certification: Silver
+Notes: Waterfront café
+
+Business Name: Kingston Coffee House
+Location: 1046 Princess St
+Hours: Mon-Sun: TBD - Call to confirm
+Local Sourcing: Local roasters (some)
+Veg/Vegan Options: Yes
+Green Plate Certification: Silver
+Notes: Local coffee shop
+
+Business Name: Northside Espresso + Kitchen
+Location: 281 Princess St
+Hours: Tue-Sat: 8:00am-3:00pm, Sun: 8:00am-3:00pm, Mon: Closed
+Local Sourcing: Seasonal Ontario produce
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Australian-style café
+
+Business Name: Sipps Coffee & Dessert Bar
+Location: 33 Brock St
+Hours: Mon-Thu: 7:00am-10:00pm, Fri-Sat: 7:00am-11:00pm, Sun: 8:00am-10:00pm
+Local Sourcing: Local pastries (some)
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Popular downtown café
+
+Business Name: The Tea Room (Queen's)
+Location: Beamish-Munro Hall
+Hours: Mon-Sun: TBD - Call to confirm
+Local Sourcing: Local baked goods (some)
+Veg/Vegan Options: Yes
+Green Plate Certification: Silver
+Notes: Zero-waste student café

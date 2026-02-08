@@ -9,6 +9,7 @@ from pathlib import Path
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from router import ask, discover_data_files, load_data, split_food_entries, split_place_entries, parse_food_entry, parse_place_entry, parse_event_entry
 
 app = FastAPI(title="KingstonAI Partner API")
 
@@ -42,6 +43,10 @@ class RegisterBody(BaseModel):
     businessType: str = ""
     businessDescription: str = ""
     contact: str = ""
+
+
+class ChatRequest(BaseModel):
+    question: str
 
 
 def load_db():
@@ -228,6 +233,151 @@ async def upload_license(
         "is_verified": True,
         "filename": dest_name,
     }
+
+
+@app.post("/api/chat")
+def chat_endpoint(request: ChatRequest):
+    """
+    Chat endpoint that uses RAG to answer questions about Kingston.
+    Uses the ask() function from router.py to generate responses.
+    """
+    try:
+        question = request.question.strip()
+        if not question:
+            raise HTTPException(status_code=400, detail="Question cannot be empty")
+        
+        answer = ask(question)
+        
+        if answer is None:
+            raise HTTPException(
+                status_code=500,
+                detail="Failed to generate response. Please check backend logs."
+            )
+        
+        return {"answer": answer, "question": question}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
+
+@app.get("/api/discovery/categories")
+def get_discovery_categories():
+    """
+    Get all available data file categories for the discovery page.
+    Returns a list of categories with their file names and display names.
+    """
+    try:
+        data_files = discover_data_files()
+        categories = []
+        
+        # Food categories
+        for file_path in data_files["food"]:
+            file_name = file_path.stem
+            display_name = file_name.replace("_", " ").title()
+            categories.append({
+                "id": file_name,
+                "label": display_name,
+                "type": "food",
+                "file": file_path.name
+            })
+        
+        # Places categories
+        for file_path in data_files["places"]:
+            file_name = file_path.stem
+            display_name = file_name.replace("_", " ").title()
+            categories.append({
+                "id": file_name,
+                "label": display_name,
+                "type": "places",
+                "file": file_path.name
+            })
+        
+        # Events categories
+        for file_path in data_files["events"]:
+            file_name = file_path.stem
+            display_name = file_name.replace("_", " ").title()
+            categories.append({
+                "id": file_name,
+                "label": display_name,
+                "type": "events",
+                "file": file_path.name
+            })
+        
+        return {"categories": categories}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to load categories: {str(e)}")
+
+
+@app.get("/api/discovery/data")
+def get_discovery_data(category_id: str = Query(..., description="Category ID (file name without extension)")):
+    """
+    Get all entries from a specific data file.
+    Returns parsed entries ready for display.
+    """
+    try:
+        data_files = discover_data_files()
+        BASE_DIR = Path(__file__).resolve().parent
+        
+        # Find the file
+        found_file = None
+        file_type = None
+        
+        for file_path in data_files["food"]:
+            if file_path.stem == category_id:
+                found_file = file_path
+                file_type = "food"
+                break
+        
+        if not found_file:
+            for file_path in data_files["places"]:
+                if file_path.stem == category_id:
+                    found_file = file_path
+                    file_type = "places"
+                    break
+        
+        if not found_file:
+            for file_path in data_files["events"]:
+                if file_path.stem == category_id:
+                    found_file = file_path
+                    file_type = "events"
+                    break
+        
+        if not found_file:
+            raise HTTPException(status_code=404, detail=f"Category '{category_id}' not found")
+        
+        # Load and parse the file
+        content = load_data(found_file)
+        if not content:
+            return {"entries": []}
+        
+        entries = []
+        
+        if file_type == "food":
+            entry_texts = split_food_entries(content)
+            for entry_text in entry_texts:
+                entry = parse_food_entry(entry_text)
+                if entry.get("name"):
+                    entries.append(entry)
+        elif file_type == "places":
+            entry_texts = split_place_entries(content)
+            for entry_text in entry_texts:
+                entry = parse_place_entry(entry_text)
+                if entry.get("name"):
+                    entries.append(entry)
+        elif file_type == "events":
+            lines = content.strip().split('\n')
+            for line in lines:
+                if line.strip() and '|' in line:
+                    entry = parse_event_entry(line)
+                    if entry and entry.get("name"):
+                        entries.append(entry)
+        
+        return {"entries": entries, "category": category_id, "type": file_type}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to load data: {str(e)}")
 
 
 @app.get("/health")

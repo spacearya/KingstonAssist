@@ -1,0 +1,56 @@
+KINGSTON CLOTHING & FASHION DATABASE
+================================================================================
+
+Business Name: 23&co.
+Location: 60 Brock St
+Hours: Mon-Sun: TBD - Call to confirm
+Local Sourcing: Local designers (some)
+Notes: Trendy local fashion boutique
+
+Business Name: A One Clothing Store
+Location: 358 King St E
+Hours: Mon-Sun: TBD - Call to confirm
+Local Sourcing: Not publicly listed
+Notes: Long-standing local apparel shop
+
+Business Name: Agent 99 Kingston
+Location: 237 Princess St
+Hours: Mon-Wed: 11am-6pm, Thu-Fri: 10am-7pm, Sat: 10am-6pm, Sun: 11am-5pm
+Local Sourcing: Local designers (some)
+Notes: Well-known local fashion retailer
+
+Business Name: Alina Ballerina
+Location: 1187 Princess St
+Hours: Mon-Sun: TBD - Call to confirm (Dance school with retail)
+Local Sourcing: Not publicly listed
+Notes: Local dance apparel shop
+
+Business Name: Expressions Fashion Boutique
+Location: 239 Princess St
+Hours: Mon-Sat: 10am-5pm, Sun: 12pm-4pm
+Local Sourcing: Not publicly listed
+Notes: Local women's fashion retailer
+
+Business Name: Heel Boy
+Location: 212 Princess St
+Hours: Mon-Tue: 10:30am-6pm, Wed-Fri: 10:30am-6:30pm, Sat: 10:30am-5:30pm, Sun: 11:30am-5pm
+Local Sourcing: Not publicly listed
+Notes: Local shoe retailer
+
+Business Name: Hubba Hubba
+Location: 88 Princess St
+Hours: Mon-Sun: TBD - Call to confirm
+Local Sourcing: Local designers (some)
+Notes: Popular local fashion boutique
+
+Business Name: Urban Outfitters Kingston
+Location: 207 Princess St
+Hours: Mon-Wed: 10am-8pm, Thu-Fri: 10am-9pm, Sat: 10am-8pm, Sun: 10am-6pm
+Local Sourcing: Not publicly listed
+Notes: Local clothing retailer
+
+Business Name: Whit Kingston
+Location: 239 Princess St
+Hours: Mon-Sun: TBD - Call to confirm
+Local Sourcing: Local designers (some)
+Notes: Local fashion boutique

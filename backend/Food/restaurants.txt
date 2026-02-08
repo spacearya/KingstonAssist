@@ -1,0 +1,90 @@
+KINGSTON RESTAURANTS DATABASE
+================================================================================
+
+Business Name: Miss Bao
+Location: 294 Princess St
+Hours: Thu-Sun 5pm-10pm (Closed from Mon-Wed)
+Local Sourcing: Yes
+Veg/Vegan Options: Limited
+Green Plate Certification: Gold
+Notes: Sustainability themed Asian fusion Restaurant
+
+Business Name: Amadeus Café
+Location: 170 Princess St
+Hours: Tue-Thu: 4pm-8pm, Fri: 4pm-10pm, Sat: 12pm-10pm, Sun-Mon: Closed
+Local Sourcing: Some Ontario meats & produce
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: German-European restaurant
+
+Business Name: Atomica Kitchen & Cocktails
+Location: 71 Brock St
+Hours: Mon-Sun: 11:30am-9pm (10pm for cocktails)
+Local Sourcing: Ontario produce & meats
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Modern Italian restaurant
+
+Business Name: Chez Piggy
+Location: 68 Princess St
+Hours: Mon-Sat: 11:30am-11pm, Sun: 10am-11pm
+Local Sourcing: Ontario produce & meats
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: One of Kingston's most iconic restaurants
+
+Business Name: Curry Original
+Location: 175 Bagot St
+Hours: Mon-Sat: Lunch 11:30am-2pm, Dinner 4pm-9pm, Sun: Dinner only 4pm-9pm
+Local Sourcing: Not publicly listed
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Long-standing Indian restaurant
+
+Business Name: Flavours of India
+Location: 461 Princess St
+Hours: Mon-Thu: 11:30am-2pm, 5pm-9:30pm, Fri-Sat: 11:30am-2pm, 5pm-10pm, Sun: 5pm-9pm
+Local Sourcing: Not publicly listed
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Well-known Indian restaurant
+
+Business Name: Go Italian Restaurant
+Location: 184 Princess St
+Hours: Mon-Sat: 11:30am-9pm, Sun: 3pm-9pm
+Local Sourcing: Not publicly listed
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: Local Italian eatery
+
+Business Name: Olivea
+Location: 39 Brock St
+Hours: Mon-Thu: 11:30am-9pm, Fri-Sat: 11:30am-10pm, Sun: 11:30am-9pm
+Local Sourcing: Ontario produce & meats
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Popular Italian restaurant
+
+Business Name: Red House Tavern
+Location: 369 King St E
+Hours: Mon-Sun: 11:30am-2am
+Local Sourcing: Ontario produce (some)
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Popular local gastropub
+
+Business Name: Tango Nuevo
+Location: 331 King St E
+Hours: Mon-Sun: TBD - Call to confirm
+Local Sourcing: Ontario produce & meats
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Popular tapas restaurant
+
+Business Name: Wooden Heads Gourmet Pizza
+Location: 192 Ontario St
+Hours: Mon-Sun: 11:30am-12am
+Local Sourcing: Ontario produce (some)
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: Wood-fired pizza restaurant

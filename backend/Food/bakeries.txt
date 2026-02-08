@@ -1,0 +1,18 @@
+KINGSTON BAKERIES DATABASE
+================================================================================
+
+Business Name: Card's Bakery
+Location: 115 Princess St
+Hours: Mon: 9am-4pm, Tue-Wed: 8am-5pm, Thu-Fri: 8am-5:30pm, Sat: 9am-5:30pm, Sun: 10am-4pm
+Local Sourcing: Local baked goods
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: Historic Kingston bakery
+
+Business Name: Pan Chancho Bakery
+Location: 44 Princess St
+Hours: Mon-Sat: 8am-5pm, Sun: 8am-3pm
+Local Sourcing: Ontario produce, local bakery goods
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Kingston's most famous bakery

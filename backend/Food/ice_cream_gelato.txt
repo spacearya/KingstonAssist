@@ -1,0 +1,26 @@
+KINGSTON ICE CREAM & GELATO DATABASE
+================================================================================
+
+Business Name: General Brock's Commissary
+Location: 55 Brock St
+Hours: Mon-Sat: 10am-5pm, Sun: Hours vary (shorter)
+Local Sourcing: Kawartha Dairy (Ontario)
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: Local sweets & ice-cream shop
+
+Business Name: Mio Gelato
+Location: 178 Ontario St
+Hours: Mon-Sun: 11am-11pm (hours may vary with weather)
+Local Sourcing: Local dairy (some)
+Veg/Vegan Options: Yes
+Green Plate Certification: null
+Notes: Well-known gelato shop
+
+Business Name: White Mountain Ice Cream
+Location: 176 Ontario St
+Hours: Spring/Summer: 12pm-10pm daily (hours vary by season, check website)
+Local Sourcing: In-house ice cream
+Veg/Vegan Options: Limited
+Green Plate Certification: null
+Notes: Iconic Kingston ice-cream shop
